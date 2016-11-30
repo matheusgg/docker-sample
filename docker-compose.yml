@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  docker-sample:
+#    build: .
+    image: docker-sample
+    ports:
+     - "8080:8080"
+    links:
+     - "redis:redis"
+    depends_on:
+     - redis
+    environment:
+     - COMPOSE_PROJECT_NAME="docker-sample"
+    networks:
+     - default
+  redis:
+    image: redis
+    ports:
+     - "6379"
